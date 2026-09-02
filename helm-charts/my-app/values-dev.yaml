@@ -1,0 +1,58 @@
+replicaCount: 1
+
+image:
+  repository: backend-api
+  tag: v1
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+
+securityContext:
+  runAsNonRoot: true
+  capabilities:
+    drop:
+      - ALL   # 불필요한 리눅스 권한 전부 제거
+
+containerPort: 8080
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: dev.myapp.local   # 로컬 /etc/hosts 등록 필요
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+autoscaling:
+  enabled: false
+httpRoute:
+  enabled: false
