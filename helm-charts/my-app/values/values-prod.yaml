@@ -1,7 +1,7 @@
 replicaCount: 3
 
 image:
-  repository: backend-api
+  repository: ghcr.io/seungchan00/backend-api
   tag: v1
   pullPolicy: IfNotPresent
 
