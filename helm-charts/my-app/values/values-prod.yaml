@@ -1,25 +1,19 @@
 replicaCount: 3
-
 image:
   repository: ghcr.io/seungchan00/backend-api
-  tag: v1
+  tag: 074a19e6fed9bf1df1637d77fc2a69a450f88f36
   pullPolicy: IfNotPresent
-
 serviceAccount:
   create: true
-
 securityContext:
   runAsNonRoot: true
   capabilities:
     drop:
       - ALL
-
 containerPort: 8080
-
 service:
   type: ClusterIP
   port: 80
-
 ingress:
   enabled: true
   className: nginx
@@ -29,29 +23,25 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-
 resources:
   requests:
     cpu: 100m
     memory: 128Mi
   limits:
     cpu: 500m
-    memory: 256Mi  
-
+    memory: 256Mi
 livenessProbe:
   httpGet:
     path: /healthz
     port: http
   initialDelaySeconds: 5
   periodSeconds: 10
-
 readinessProbe:
   httpGet:
     path: /healthz
     port: http
   initialDelaySeconds: 5
   periodSeconds: 5
-
 autoscaling:
   enabled: true
   minReplicas: 3
