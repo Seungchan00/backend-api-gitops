@@ -46,3 +46,7 @@ autoscaling:
   enabled: false
 httpRoute:
   enabled: false
+
+serviceMonitor:
+  enabled: true
+  interval: 15s
