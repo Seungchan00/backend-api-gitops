@@ -5,8 +5,8 @@
     "name": "admbhnc",
     "namespace": "default",
     "uid": "c49b397a-13f3-4e1e-a850-71813c242b7c",
-    "resourceVersion": "1792482957266990",
-    "generation": 2,
+    "resourceVersion": "1792483806516015",
+    "generation": 3,
     "creationTimestamp": "2026-10-20T07:52:51Z",
     "labels": {
       "grafana.app/deprecatedInternalID": "263741534457856"
@@ -15,7 +15,7 @@
       "grafana.app/createdBy": "user:bg1rrcu79yarke",
       "grafana.app/saved-from-ui": "Grafana v13.2.4 (0e79aef9d9)",
       "grafana.app/updatedBy": "user:bg1rrcu79yarke",
-      "grafana.app/updatedTimestamp": "2026-10-20T07:55:57Z"
+      "grafana.app/updatedTimestamp": "2026-10-20T08:10:06Z"
     }
   },
   "spec": {
@@ -180,7 +180,7 @@
                       },
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum(rate(http_requests_total{status_code=~\"5..\"}[1m]))",
+                        "expr": "sum(rate(http_requests_total{status_code=~\"5..\"}[1m])) or vector(0)",
                         "legendFormat": "__auto",
                         "range": true
                       }
