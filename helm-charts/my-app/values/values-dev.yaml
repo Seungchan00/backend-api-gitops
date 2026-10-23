@@ -17,6 +17,9 @@ service:
 ingress:
   enabled: true
   className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rps: "20"
+    nginx.ingress.kubernetes.io/limit-connections: "20"
   hosts:
     - host: dev.myapp.local # 로컬 /etc/hosts 등록 필요
       paths:

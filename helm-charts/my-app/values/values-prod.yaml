@@ -17,6 +17,9 @@ service:
 ingress:
   enabled: true
   className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rps: "20"
+    nginx.ingress.kubernetes.io/limit-connections: "20"
   hosts:
     - host: prod.myapp.local
       paths:
@@ -48,6 +51,7 @@ autoscaling:
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
   targetMemoryUtilizationPercentage: 70
+  scaleDownStabilizationSeconds: 300
 httpRoute:
   enabled: false
 
