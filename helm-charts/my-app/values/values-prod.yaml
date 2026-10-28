@@ -18,8 +18,8 @@ ingress:
   enabled: true
   className: nginx
   annotations:
-    nginx.ingress.kubernetes.io/limit-rps: "20"
-    nginx.ingress.kubernetes.io/limit-connections: "20"
+    nginx.ingress.kubernetes.io/limit-rps: "2000"
+    nginx.ingress.kubernetes.io/limit-connections: "1000"
   hosts:
     - host: prod.myapp.local
       paths:
