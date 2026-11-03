@@ -12,4 +12,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "my-app.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ .Values.debugSelectorName | default (include "my-app.name" .) }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
