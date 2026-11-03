@@ -53,8 +53,3 @@ httpRoute:
 serviceMonitor:
   enabled: true
   interval: 15s
-tolerations:
-  - key: "dedicated"
-    operator: "Equal"
-    value: "special"
-    effect: "NoSchedule"
