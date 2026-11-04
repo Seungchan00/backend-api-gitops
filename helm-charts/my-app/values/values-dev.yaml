@@ -46,7 +46,11 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 5
 autoscaling:
-  enabled: false
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilziationPercentage: 50
+
 httpRoute:
   enabled: false
 
