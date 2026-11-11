@@ -99,9 +99,17 @@ dev 에서는 빠른 검증을 위해 자동배포, 최소 자원으로만 검�
 
 prod 에서는 노드 하나가 죽어도 서비스가 유지되는 가용성 유지. requests 100m/128Mi , limits 500m/256Mi 설정, 검증된 태그로 사람이 배포하게 설정.  HPA min: 3 max: 10 CPU: 50% Memory: 70%로 설정
 
+## 부하 테스트 
+`loadtest/load-test.js`로 prod에 k6 부하 줍니다.
+
+```
+k6 run loadtest/load-test.js
+```
+단일 IP에서 쓰면 Ingress의 IP당 rate limit에 막혀 대부분 503이 나기 때문에 스케일아웃을 보려면 prod `limit-rps` GIT으로 임시 상향하고, 필요하면 HPA CPU 임계치도 낮춘 뒤 실험하면 됩니다. 테스트가 끝나면 되돌립니다.
 ## 알려진 제약
 - 단일 Kind 클러스터에서 네임스페이스로 환경 분리 (실무는 클러스터 분리)
 - Ingress 컨트롤러는 Kind의 hostPort 매핑 때문에 control-plane 고정 필수
 - 부하 테스트에서는 단일 IP 한계로 prod rate limit과 HPA 임계치를 일시 조정했고 이후 원복
 - Trivy는 amd64 이미지만 스캔
+
 
