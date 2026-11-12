@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/seungchan00/backend-api
-  tag: 074a19e6fed9bf1df1637d77fc2a69a450f88f36
+  tag: 660defbfc57d90a4a85abfb7829aaac46d73b492
   pullPolicy: IfNotPresent
 serviceAccount:
   create: true
@@ -50,11 +50,8 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 50
-
 httpRoute:
   enabled: false
-
 serviceMonitor:
   enabled: true
   interval: 15s
-
